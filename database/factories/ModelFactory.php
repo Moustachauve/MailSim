@@ -21,3 +21,18 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(App\Message::class, function (Faker\Generator $faker) {
+
+    return [
+        'sender_id' => App\User::all()->random()->id,
+        'content' => $faker->text($maxNbChars = 500),
+    ];
+});
+
+$factory->define(App\MessageMeta::class, function (Faker\Generator $faker) {
+
+    return [
+        'owner_id' => App\User::all()->random()->id,
+    ];
+});
