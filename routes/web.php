@@ -11,6 +11,14 @@
 |
 */
 
+/*
 Route::get('/', function () {
-    return view('welcome');
+    return view('userList');
 });
+*/
+
+Route::get('/', 'UserController@all');
+
+Route::get('/message/{userId}', 'MessageController@inbox');
+
+Route::get('/message/{userId}/read/{messageMetaId}', 'MessageController@read');

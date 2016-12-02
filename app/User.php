@@ -29,11 +29,11 @@ class User extends Authenticatable
 
     public function receivedMessages()
     {
-        return $this->hasMany('App\MessageMeta');
+        return $this->hasMany('App\MessageMeta', 'owner_id');
     }
 
     public function sentMessages()
     {
-        return $this->hasMany('App/Message');
+        return $this->hasMany('App\Message', 'sender_id');
     }
 }
