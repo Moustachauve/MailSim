@@ -2,24 +2,24 @@
 
 @section('content.message')
 
-    <h3>{{$messageMeta->message->title}}</h3>
+    <h3>{{$message->title}}</h3>
     <p>
         <table class="table">
         <tr>
             <th>From</th>
-            <td>{{$messageMeta->message->sender->name}}</td>
+            <td>{{$message->sender->name}}</td>
         </tr>
         <tr>
             <th>To</th>
             <td>
-                @foreach($messageMeta->message->receivers as $receiver)
+                @foreach($message->receivers as $receiver)
                     <div>{{$receiver->owner->name}}</div>
                 @endforeach
             </td>
         </tr>
         <tr>
             <th>Sent</th>
-            <td>{{date('F j, Y \a\t h:iA', strtotime($messageMeta->message->date_sent))}}</td>
+            <td>{{date('F j, Y \a\t h:iA', strtotime($message->created_at))}}</td>
         </tr>
 
     </table>
@@ -27,7 +27,11 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            {{$messageMeta->message->content}}
+            @if(empty($message->content))
+                <em>This message is empty</em>
+            @else
+                {{$message->content}}
+            @endif
         </div>
     </div>
 @endsection

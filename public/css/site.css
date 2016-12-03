@@ -1,0 +1,11 @@
+.footer {
+    padding-top: 20px;
+    margin-bottom: 25px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.empty {
+    font-style: italic;
+    font-color: #777;
+}

@@ -3,16 +3,21 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>
+                Welcome, {{$user->name}}
 
-        <h2>Welcome, {{$user->name}}</h2>
+                <a href="/message/{{$user->id}}/new" class="btn btn-primary pull-right">New Message</a>
+            </h2>
 
-        <div class="row">
-            <div class="col-sm-3">
-                @include('messageMenu')
-            </div>
-            <div class="col-sm-9">
-                @yield('content.message')
+            <div class="row">
+                <div class="col-sm-3">
+                    @include('messageMenu')
+                </div>
+                <div class="col-sm-9">
+                    @yield('content.message')
+                </div>
             </div>
         </div>
     </div>

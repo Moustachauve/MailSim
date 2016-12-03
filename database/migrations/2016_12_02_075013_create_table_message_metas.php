@@ -17,7 +17,12 @@ class CreateTableMessageMetas extends Migration
             $table->increments('id');
             $table->unsignedInteger('message_id');
             $table->unsignedInteger('owner_id');
+            $table->boolean('deleted')->default(false);
+            $table->boolean('read')->default(false);
             $table->timestamps();
+
+            $table->foreign('message_id')->references('id')->on('messages')->onDelete('cascade');
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -18,7 +18,6 @@ class CreateTableMessages extends Migration
             $table->unsignedInteger('sender_id');
             $table->string('title');
             $table->text('content');
-            $table->dateTime('date_sent');
             $table->timestamps();
         });
     }

@@ -9,6 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/site.css" rel="stylesheet">
 
 </head>
 <body>
@@ -26,8 +27,13 @@
     </div>
 </nav>
 
+<div class="container">
+    @yield('content')
 
-@yield('content')
+    <footer class="footer">
+        <p>© Christophe Gagnier.</p>
+    </footer>
+</div>
 
 <script src="/js/jquery-3.1.1.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>

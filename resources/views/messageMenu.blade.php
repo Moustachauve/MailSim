@@ -3,5 +3,5 @@
 
 <div class="list-group">
     <a href="/message/{{$user->id}}" class="list-group-item list-group-item-action">Inbox</a>
-    <a href="/message/{{$user->id}}" class="list-group-item list-group-item-action">Sent</a>
+    <a href="/message/{{$user->id}}/sent" class="list-group-item list-group-item-action">Sent</a>
 </div>

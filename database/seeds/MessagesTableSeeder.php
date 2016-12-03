@@ -11,9 +11,6 @@ class MessagesTableSeeder extends Seeder
      */
     public function run()
     {
-        \App\Message::truncate();
-
-
         (new Faker\Generator)->seed(42);
 
         factory(App\Message::class, 25)->create()->each(function($message) {

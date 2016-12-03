@@ -15,10 +15,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'password' => $password ?: $password = bcrypt('secret'),
-        'remember_token' => str_random(10),
+        'name' => $faker->firstName.' '.$faker->lastName,
     ];
 });
 
@@ -28,9 +25,9 @@ $factory->define(App\Message::class, function (Faker\Generator $faker) {
 
     return [
         'sender_id' => $faker->randomElement($userIds),
-        'date_sent' => $faker->dateTimeBetween($startDate = '-3 months', $endDate = 'now', $timezone = date_default_timezone_get()),
+        'created_at' => $faker->dateTimeBetween($startDate = '-3 months', $endDate = 'now', $timezone = date_default_timezone_get()),
         'title' => $faker->sentence(6, true),
-        'content' => $faker->realText($maxNbChars = 500),
+        'content' => $faker->realText($maxNbChars = $faker->numberBetween(250, 2000)),
     ];
 });
 
