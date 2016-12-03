@@ -15,7 +15,10 @@
                 <input type="text" class="form-control" id="name" name="name" placeholder="Full name" maxlength="50" value="{{old('name')}}">
             </div>
             <div class="form-group text-right">
-                <button type="submit" class="btn btn-success">Create</button>
+                <button type="submit" class="btn btn-success">
+                    <span class="glyphicon glyphicon-plus"></span>
+                    Create
+                </button>
             </div>
         </form>
     </div>

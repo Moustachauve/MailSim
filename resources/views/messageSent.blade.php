@@ -13,7 +13,8 @@
                 <tr>
                     <th>Subject</th>
                     <th>From</th>
-                    <th>Received</th>
+                    <th>Date</th>
+                    <th class="text-center">Seen by</th>
                     <th></th>
                 </tr>
             </thead>
@@ -24,8 +25,11 @@
                     <td>{{$message->title}}</td>
                     <td>{{$message->sender->name}}</td>
                     <td>{{date('M j, Y h:iA', strtotime($message->created_at))}}</td>
-                    <td>
-                        <a href="/message/{{$user->id}}/sent/{{$message->id}}/read">
+                    <td class="text-center">
+                        {{count($message->seenBy)}} / {{count($message->receivers)}}
+                    </td>
+                    <td class="text-right">
+                        <a href="/message/{{$user->id}}/sent/{{$message->id}}/read" class="btn btn-default">
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
                     </td>

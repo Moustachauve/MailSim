@@ -15,4 +15,9 @@ class MessageMeta extends Model
     {
         return $this->belongsTo('App\User', 'owner_id');
     }
+
+    public function getIsReadAttribute() {
+        return !empty($this->read_at);
+    }
+
 }

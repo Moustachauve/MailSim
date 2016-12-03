@@ -39,7 +39,10 @@
         </div>
 
         <div class="form-group text-right">
-            <button type="submit" class="btn btn-success">Send</button>
+            <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-send"></span>
+                Send
+            </button>
         </div>
     </form>
 

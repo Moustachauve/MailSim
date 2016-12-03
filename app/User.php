@@ -27,13 +27,34 @@ class User extends Model
         'password', 'remember_token',
     ];
 
-    public function receivedMessages()
+    private function allReceivedMessages()
     {
         return $this->hasMany('App\MessageMeta', 'owner_id');
+    }
+
+    public function receivedMessages()
+    {
+        return $this->allReceivedMessages()->where('deleted', false);
     }
 
     public function sentMessages()
     {
         return $this->hasMany('App\Message', 'sender_id');
     }
+
+    public function deletedMessages()
+    {
+        return $this->allReceivedMessages()->where('deleted', true);
+    }
+
+    public function getUnreadMessagesAttribute() {
+        return $this->receivedMessages->where('isRead', false);
+    }
+
+
+    public function getUnreadDeletedMessagesAttribute()
+    {
+        return $this->deletedMessages->where('isRead', false);
+    }
+
 }

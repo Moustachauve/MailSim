@@ -13,7 +13,14 @@
             <th>To</th>
             <td>
                 @foreach($message->receivers as $receiver)
-                    <div>{{$receiver->owner->name}}</div>
+                    <div>
+                        {{$receiver->owner->name}}
+                        @if($receiver->isRead)
+                            <div class="pull-right empty small">
+                                Seen ({{date('M j, Y h:iA', strtotime($receiver->read_at))}})
+                            </div>
+                        @endif
+                    </div>
                 @endforeach
             </td>
         </tr>

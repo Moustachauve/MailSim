@@ -8,7 +8,10 @@
             <h2>
                 Welcome, {{$user->name}}
 
-                <a href="/message/{{$user->id}}/new" class="btn btn-primary pull-right">New Message</a>
+                <a href="/message/{{$user->id}}/new" class="btn btn-primary pull-right">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    New Message
+                </a>
             </h2>
 
             <div class="row">

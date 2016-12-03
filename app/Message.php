@@ -17,4 +17,9 @@ class Message extends Model
     {
         return $this->belongsTo('App\User', 'sender_id');
     }
+
+    public function getSeenByAttribute()
+    {
+        return $this->receivers->where('isRead', true);
+    }
 }

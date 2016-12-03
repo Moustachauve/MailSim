@@ -29,9 +29,19 @@ class MessageController extends Controller
     {
         $user = User::find($userId);
 
-        return view('messagesSent', [
+        return view('messageSent', [
             'user' => $user,
             'messages' => $user->sentMessages()->latest()->get()
+        ]);
+    }
+
+    public function deletedMessages($userId)
+    {
+        $user = User::find($userId);
+
+        return view('messageDeleted', [
+            'user' => $user,
+            'messages' => $user->deletedMessages()->latest()->get()
         ]);
     }
 
@@ -78,11 +88,16 @@ class MessageController extends Controller
 
     public function read($userId, $messageMetaId) {
         $user = User::find($userId);
-        $message = $user->receivedMessages()->find($messageMetaId)->message;
+        $messageMeta = $user->receivedMessages()->find($messageMetaId);
+
+        if(!$messageMeta->isRead) {
+            $messageMeta->read_at = date("Y-m-d H:i:s");
+            $messageMeta->save();
+        }
 
         return view('messageRead', [
             'user' => $user,
-            'message' => $message
+            'message' => $messageMeta->message
         ]);
     }
 
@@ -94,5 +109,27 @@ class MessageController extends Controller
             'user' => $user,
             'message' => $message
         ]);
+    }
+
+    public function deleteMessage($userId, $messageMetaId)
+    {
+        $user = User::find($userId);
+        $messageMeta = $user->receivedMessages()->find($messageMetaId);
+
+        $messageMeta->deleted = true;
+        $messageMeta->save();
+
+        return redirect('/message/'.$userId);
+    }
+
+    public function restoreMessage($userId, $messageMetaId)
+    {
+        $user = User::find($userId);
+        $messageMeta = $user->deletedMessages()->find($messageMetaId);
+
+        $messageMeta->deleted = false;
+        $messageMeta->save();
+
+        return redirect('/message/'.$userId.'/deleted');
     }
 }
